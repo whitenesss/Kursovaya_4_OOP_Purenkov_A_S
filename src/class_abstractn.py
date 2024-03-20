@@ -3,9 +3,15 @@ from abc import ABC, abstractmethod
 
 class AbstractHeadHunterAPI(ABC):
     @abstractmethod
-    def __init__(self, url, params):
-        self.url = url
-        self.params = params
+    def __init__(self):
+        pass
+
+    def get_params(self):
+        pass
+
+    @abstractmethod
+    def input_set(self):
+        pass
 
     @property
     @abstractmethod
