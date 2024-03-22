@@ -1,13 +1,14 @@
 from src.class_record import JsonStorage
 from src.class_HeadHunterAPI import HeadHunterAPI
 from src.class_vcacansy import Vacancy
-from src.fanc import filter_vacancies, get_vacancies_by_salary, get_top_vacancies, sort_vacancies
+from src.fanc import filter_vacancies, get_vacancies_by_salary, get_top_vacancies, sort_vacancies,serch_query,serch_area
+
+
 
 # Создание экземпляра класса для работы с API сайтов с вакансиями
 def user_interaction():
-
     hh_api = HeadHunterAPI()
-    hh_vacancies = hh_api.requests_get
+    hh_vacancies = hh_api.requests_get(serch_query(), serch_area())
     vacancies_list = Vacancy.cast_to_object_list(hh_vacancies)
 
     print(f"Получено {len(vacancies_list)} вакансий с HeadHunter")

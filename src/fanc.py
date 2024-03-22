@@ -1,10 +1,10 @@
 def filter_vacancies(vacancies_data: list, filter_words: str):
-    '''
+    """
     поис вакансии из json по пораметрам пользователя
     :param vacancies_data: берем данные из файла json
     :param filter_words: рапрашиваем слово ключевое у пользоватеоля
     :return:
-    '''
+    """
 
     filtered_vacancies = []
     for vacancy in vacancies_data:
@@ -16,7 +16,7 @@ def filter_vacancies(vacancies_data: list, filter_words: str):
 
 
 def get_vacancies_by_salary(vacancies_data: list, salary_range: str):
-    '''
+    """
      Эта функция выбирает вакансии из списка (vacancies_data),
      удовлетворяющие заданному диапазону зарплат (salary_range).
      Диапазон зарплат задается в формате "минимальная_зарплата-максимальная_зарплата".
@@ -26,7 +26,7 @@ def get_vacancies_by_salary(vacancies_data: list, salary_range: str):
     :param vacancies_data: json file
     :param salary_range: ввод пользователя
     :return:
-    '''
+    """
     min_salary, max_salary = map(int, salary_range.split('-'))
     ranged_vacancies = []
     for vacancy in vacancies_data:
@@ -36,19 +36,48 @@ def get_vacancies_by_salary(vacancies_data: list, salary_range: str):
 
 
 def sort_vacancies(vacancies_data: list):
-    '''
+    """
     Эта функция сортирует список вакансий (vacancies_data) по убыванию зарплаты
     :param vacancies_data:
     :return:
-    '''
+    """
     return sorted(vacancies_data, key=lambda x: x.get('salary_from', 0), reverse=True)
 
 
 def get_top_vacancies(vacancies_data: list, top_n):
-    '''
+    """
      Она просто возвращает первые N вакансий из списка.
     :param vacancies_data:
     :param top_n:
     :return:
-    '''
+    """
     return vacancies_data[:top_n]
+
+
+def serch_query():
+    """функция поискового запроса"""
+    search_query = input("Введите поисковый запрос: ")
+    return search_query
+
+
+def serch_area():
+    """функция для hh исключительно для выбора города"""
+    print('Москва, Санкт-Питербург, Краснодар')
+    search_area = input("выберете город: ")
+    counter = 0
+    while counter == 0:
+        if search_area.lower() == 'москва':
+            search_area = 1
+            counter += 1
+            return search_area
+        elif search_area.lower() == 'санкт-питербург':
+            search_area = 2
+            counter += 1
+            return search_area
+        elif search_area.lower() == 'краснодар':
+            search_area = 53
+            counter += 1
+            return search_area
+        else:
+            print('ввели не верно')
+            search_area = input("выберете город: ")

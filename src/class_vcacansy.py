@@ -1,8 +1,6 @@
 
 class Vacancy:
-    '''
-    класс для взаимодействия в вакансиями
-    '''
+    """класс для взаимодействия в вакансиями"""
     def __init__(self, name, url, city, salary_from, salary_to, currency, requirements):
         self.name = name
         self.url = url
@@ -19,10 +17,7 @@ class Vacancy:
         self.requirements = requirements
 
     def __str__(self):
-        '''
-        красивый вывод в кансоль при надобнасти
-        :return:
-        '''
+        """красивый вывод в кансоль при надобнасти"""
         if self.salary_from == 0 and self.salary_to == 0 and self.currency is None:
             return (f"Название вакансии: {self.name}\n"
                     f"Ссылка: {self.url}\n"
@@ -37,8 +32,6 @@ class Vacancy:
                     f"Зарплата: {self.salary_from}-{self.salary_to} {self.currency}.\n"
                     f"Требования: {self.requirements}"
                     f"\n---")
-
-    # Методы сравнения вакансий по зарплате между собой
 
     def __eq__(self, other: object) -> bool:
         """
@@ -72,11 +65,11 @@ class Vacancy:
 
     @classmethod
     def cast_to_object_list(cls, vacancies_data: dict):
-        '''
+        """
         создаем экземпляр клас Vacansy c учетом отсутствия selary
         :param vacancies_data:
         :return:
-        '''
+        """
         vacancy_objects = []
         for vacancy_data in vacancies_data:
             city = vacancy_data.get('area', {}).get('name')
