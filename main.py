@@ -1,13 +1,15 @@
+# -*- coding: utf-8 -*-
 from src.class_record import JsonStorage
 from src.class_HeadHunterAPI import HeadHunterAPI
 from src.class_vcacansy import Vacancy
-from src.fanc import filter_vacancies, get_vacancies_by_salary, get_top_vacancies, sort_vacancies,serch_query,serch_area
+from src.fanc import filter_vacancies, get_vacancies_by_salary, get_top_vacancies, sort_vacancies, serch_query, \
+    serch_area
 
 
-
-# Создание экземпляра класса для работы с API сайтов с вакансиями
 def user_interaction():
+    """основная функция взоимодействия с пользователем"""
     hh_api = HeadHunterAPI()
+    # Создание экземпляра класса для работы с API сайтов с вакансиями
     hh_vacancies = hh_api.requests_get(serch_query(), serch_area())
     vacancies_list = Vacancy.cast_to_object_list(hh_vacancies)
 
@@ -20,7 +22,6 @@ def user_interaction():
     print("Введите диапазон зарплат")
     salary_range = input("Пример ввода: 100000 - 150000 :  ")  # Пример: 100000 - 150000
     # Применение фильтрации и сортировки к вакансиям
-    print(type(vacancies_data))
     filtered_vacancies = filter_vacancies(vacancies_data, filter_words)
     ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
     sorted_vacancies = sort_vacancies(ranged_vacancies)
