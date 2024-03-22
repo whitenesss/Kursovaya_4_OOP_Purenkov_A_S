@@ -6,7 +6,6 @@ from src.class_record import JsonStorage  # replace with the actual module name
 class TestJsonStorage:
     @pytest.fixture(autouse=True)
     def setup_and_teardown(self):
-        # Setup: create a test json file
         self.test_file = 'data/test.json'
         self.test_data = [
             {
@@ -19,11 +18,10 @@ class TestJsonStorage:
                 "url": "http://test.url"
             }
         ]
-        os.makedirs('data', exist_ok=True)  # This line creates the 'data' directory if it doesn't exist
+        os.makedirs('data', exist_ok=True)
         with open(self.test_file, 'w', encoding='utf-8') as f:
             json.dump(self.test_data, f, ensure_ascii=False, indent=4)
         yield
-        # Teardown: remove the test json file
         os.remove(self.test_file)
 
     def test_load_json(self):
